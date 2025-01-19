@@ -28,6 +28,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <link rel="icon" href="/logo.png" sizes="any" />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

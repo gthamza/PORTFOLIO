@@ -1,8 +1,10 @@
 import { FaLocationArrow } from "react-icons/fa6";
+import Image from "next/image"; // Import Next.js's Image component for optimized image handling
 
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import PKFlag from "@/public/pk.svg"; // Correct import path for local SVG
 
 const Hero = () => {
   return (
@@ -40,8 +42,18 @@ const Hero = () => {
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi! I&apos;m Hamza, a Next.js Developer based in Pakistan.
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl flex items-center justify-center gap-2">
+            Hi! I&apos;m Hamza, a FRONTEND Developer based in{" "}
+            <span className="flex items-center gap-1">
+              <Image
+                src={PKFlag}
+                alt="Pakistan Flag"
+                width={20}
+                height={20}
+                className="inline-block"
+              />
+               Pakistan
+            </span>
           </p>
 
           <a href="#about">

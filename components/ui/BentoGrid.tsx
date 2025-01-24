@@ -50,8 +50,8 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const leftLists = ["ReactJS", "NextJS", "Typescript"];
+  const rightLists = ["Native", "NODEJS", "MYSQL"];
 
   const [copied, setCopied] = useState(false);
 
@@ -76,7 +76,6 @@ export const BentoGridItem = ({
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={img}
               alt={img}
@@ -90,7 +89,6 @@ export const BentoGridItem = ({
           }`}
         >
           {spareImg && (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={spareImg}
               alt={spareImg}

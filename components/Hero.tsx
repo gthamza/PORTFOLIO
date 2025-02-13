@@ -1,10 +1,10 @@
 import { FaLocationArrow } from "react-icons/fa6";
-import Image from "next/image"; // Import Next.js's Image component for optimized image handling
+import Image from "next/image";
 
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
-import PKFlag from "@/public/pk.svg"; // Correct import path for local SVG
+import PKFlag from "@/public/pk.svg";
 
 const Hero = () => {
   return (
@@ -43,7 +43,7 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl flex items-center justify-center gap-2">
-            Hi! I&apos;Abdul Wahab, a FRONTEND Developer based in{" "}
+            Hi! I&apos;Hamza Waris, a FRONTEND Developer based in{" "}
             <span className="flex items-center gap-1">
               <Image
                 src={PKFlag}

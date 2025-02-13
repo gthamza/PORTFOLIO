@@ -43,7 +43,7 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl flex items-center justify-center gap-2">
-            Hi! I&apos;m Hamza, a FRONTEND Developer based in{" "}
+            Hi! I&apos;Abdul Wahab, a FRONTEND Developer based in{" "}
             <span className="flex items-center gap-1">
               <Image
                 src={PKFlag}
@@ -52,7 +52,7 @@ const Hero = () => {
                 height={20}
                 className="inline-block"
               />
-               Pakistan
+              Pakistan
             </span>
           </p>
 

@@ -1,16 +1,17 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-
-// Use the correct Lottie import
-import Lottie from "lottie-react"; // Default import
-
+import dynamic from "next/dynamic"; // Fix: Dynamically import Lottie to prevent SSR issues
 import { cn } from "@/lib/utils";
 
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
-import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
+import animationData from "@/data/confetti.json"; // Ensure this is accessible
+
+// Fix: Dynamically import Lottie with `ssr: false`
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export const BentoGrid = ({
   className,
@@ -55,6 +56,13 @@ export const BentoGridItem = ({
 
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    if (copied) {
+      const timer = setTimeout(() => setCopied(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [copied]);
+
   const handleCopy = () => {
     const text = "hsu@jsmastery.pro";
     navigator.clipboard.writeText(text);
@@ -78,7 +86,7 @@ export const BentoGridItem = ({
           {img && (
             <img
               src={img}
-              alt={img}
+              alt="Item"
               className={cn(imgClassName, "object-cover object-center ")}
             />
           )}
@@ -91,7 +99,7 @@ export const BentoGridItem = ({
           {spareImg && (
             <img
               src={spareImg}
-              alt={spareImg}
+              alt="Spare"
               className="object-cover object-center w-full h-full"
             />
           )}
@@ -144,11 +152,12 @@ export const BentoGridItem = ({
               </div>
             </div>
           )}
+
           {id === 6 && (
             <div className="mt-5 relative">
               <div
                 className={`absolute -bottom-5 right-0 ${
-                  copied ? "block" : "block"
+                  copied ? "block" : "hidden"
                 }`}
               >
                 <Lottie

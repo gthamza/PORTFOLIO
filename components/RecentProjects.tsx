@@ -7,7 +7,7 @@ import { PinContainer } from "./ui/Pin";
 
 const RecentProjects = () => {
   return (
-    <div className="py-20" id="projects">
+    <section className="py-20" id="projects">
       <h1 className="heading">
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
@@ -43,51 +43,55 @@ const RecentProjects = () => {
                 />
               </div>
 
-              <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
+              {/* Project Title */}
+              <h2 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
                 {item.title}
-              </h1>
+              </h2>
 
-              <p
-                className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
-                style={{ color: "#BEC1DD", margin: "1vh 0" }}
-              >
+              {/* Project Description */}
+              <p className="lg:text-xl lg:font-normal font-light text-sm text-muted my-2">
                 {item.des}
               </p>
 
               {/* Tech Icons & Live Site */}
               <div className="flex items-center justify-between mt-7 mb-3">
+                {/* Tech Stack Icons */}
                 <div className="flex items-center">
                   {item.iconLists.map((icon, index) => (
                     <div
                       key={index}
-                      className="border border-white/[.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
-                      style={{
-                        transform: `translateX(-${6 * index}px)`,
-                      }}
+                      className="border border-white/[.2] rounded-full bg-black lg:w-12 lg:h-10 w-10 h-10 flex justify-center items-center overflow-hidden"
+                      style={{ transform: `translateX(-${6 * index}px)` }}
                     >
                       <Image
                         src={icon}
                         alt="Tech Icon"
-                        width={20}
-                        height={20}
-                        className="p-2"
+                        width={35}
+                        height={35}
+                        className="object-cover w-full h-full"
                       />
                     </div>
                   ))}
                 </div>
 
-                <div className="flex justify-center items-center">
-                  <p className="flex lg:text-xl md:text-xs text-sm text-purple">
+                {/* Live Site Link */}
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="live-site"
+                >
+                  <p className="lg:text-xl md:text-xs text-sm text-purple">
                     Check Live Site
                   </p>
-                  <FaLocationArrow className="ms-3" color="#CBACF9" />
-                </div>
+                  <FaLocationArrow className="ms-2" color="#CBACF9" />
+                </a>
               </div>
             </PinContainer>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

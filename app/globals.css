@@ -78,8 +78,33 @@
   }
 }
 
-@layer utilities {
+@layer components {
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;
+  }
+
+  /* Project Card */
+  .project-card {
+    @apply lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw] transition-transform duration-300 hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Project Image Wrapper */
+  .project-image-wrapper {
+    @apply relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10 rounded-xl shadow-md;
+  }
+
+  /* Project Cover Image */
+  .project-cover {
+    @apply z-10 absolute bottom-0 transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Tech Icons */
+  .tech-icon {
+    @apply border border-white/[.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center transition-transform duration-300 hover:scale-110 hover:bg-gray-800;
+  }
+
+  /* Live Site Button */
+  .live-site {
+    @apply flex justify-center items-center gap-2 text-purple hover:text-white transition-all duration-300;
   }
 }

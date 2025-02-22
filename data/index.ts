@@ -86,7 +86,7 @@ export const projects = [
     des: "A seamless video conferencing platform for teams and individuals.",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "https://github.com/adrianhajdin/zoom-clone",
+    link: "https://github.com/gthamza/KINGPIZZA",
   },
   {
     id: 3,
@@ -102,7 +102,7 @@ export const projects = [
     des: "A GSAP & Three.js animated Apple iPhone 15 Pro website replica.",
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "https://github.com/adrianhajdin/iphone",
+    link: "https://github.com/gthamza/REACT-CHAT",
   },
 ];
 

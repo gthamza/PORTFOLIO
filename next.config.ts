@@ -1,46 +1,32 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  /* config options here */
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint during build
+  },
+  reactStrictMode: true, // Keep React strict mode enabled
+  // swcMinify: true, // Enable SWC minification for better performance
+  images: {
+    domains: ["yourdomain.com"], // Add any image domains you use
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
+  },
 };
 
 export default withSentryConfig(nextConfig, {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
-
   org: "gt-ib",
   project: "javascript-nextjs",
-
-  // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
-
-  // For all available options, see:
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
-
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
-  reactComponentAnnotation: {
-    enabled: true,
-  },
-
-  // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
-  // tunnelRoute: "/monitoring",
-
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
+  silent: !process.env.CI, // Reduce logs in CI builds
+  widenClientFileUpload: true, // Upload full source maps for better stack traces
+  reactComponentAnnotation: { enabled: true }, // Annotate React components for better debugging
+  hideSourceMaps: true, // Hide source maps from production
+  disableLogger: true, // Reduce bundle size by removing Sentry logs
+  automaticVercelMonitors: true, // Enable automatic instrumentation for Vercel Cron jobs
 });

@@ -4,6 +4,22 @@ import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
 
 export default function Page() {
+  const handleError = async () => {
+    try {
+      await Sentry.startSpan(
+        { name: "Example Frontend Span", op: "test" },
+        async () => {
+          const res = await fetch("/api/sentry-example-api");
+          if (!res.ok) {
+            throw new Error("Sentry Example Frontend Error");
+          }
+        }
+      );
+    } catch (error) {
+      console.error("Sentry error:", error);
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -22,9 +38,8 @@ export default function Page() {
       >
         <h1 style={{ fontSize: "4rem", margin: "14px 0" }}>
           <svg
-            style={{
-              height: "1em",
-            }}
+            width="200"
+            height="44"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 200 44"
           >
@@ -48,30 +63,24 @@ export default function Page() {
             fontSize: "14px",
             margin: "18px",
           }}
-          onClick={async () => {
-            await Sentry.startSpan({
-              name: 'Example Frontend Span',
-              op: 'test'
-            }, async () => {
-              const res = await fetch("/api/sentry-example-api");
-              if (!res.ok) {
-                throw new Error("Sentry Example Frontend Error");
-              }
-            });
-          }}
+          onClick={handleError}
         >
           Throw error!
         </button>
 
         <p>
           Next, look for the error on the{" "}
-          <a href="https://gt-ib.sentry.io/issues/?project=4508677101977600">Issues Page</a>.
+          <a href="https://gt-ib.sentry.io/issues/?project=4508677101977600">
+            Issues Page
+          </a>
+          .
         </p>
         <p style={{ marginTop: "24px" }}>
           For more information, see{" "}
           <a href="https://docs.sentry.io/platforms/javascript/guides/nextjs/">
-            https://docs.sentry.io/platforms/javascript/guides/nextjs/
+            Next.js Sentry Docs
           </a>
+          .
         </p>
       </main>
     </div>
